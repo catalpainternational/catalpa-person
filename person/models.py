@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
-from saudedb.core.models import Model, ModelType
+from catalpa.aihun.models import Model, ModelType
 from location.models import Address
 
 
