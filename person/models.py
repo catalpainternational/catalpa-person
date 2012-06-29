@@ -1,9 +1,9 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
-from catalpa.aihun.models import Model, ModelType
 # where does address come from ????
 #from location.models import Address
+from aihun.models import Model, ModelType
 
 
 GENDER_CHOICES = (
