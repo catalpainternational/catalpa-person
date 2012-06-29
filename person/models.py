@@ -2,7 +2,8 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 from catalpa.aihun.models import Model, ModelType
-from location.models import Address
+# where does address come from ????
+#from location.models import Address
 
 
 GENDER_CHOICES = (
@@ -48,16 +49,16 @@ class PersonName(Model):
         return u"%s %s %s %s" % (self.given_name, self.middle_name, self.family_name, self.family_name2)
 
 
-class PersonAddress(Address):
-    person = models.ForeignKey(Person, null=True, blank=True, verbose_name=_('person'))
-    preferred = models.BooleanField(_('preferred'), blank=True,)
+# class PersonAddress(Address):
+#     person = models.ForeignKey(Person, null=True, blank=True, verbose_name=_('person'))
+#     preferred = models.BooleanField(_('preferred'), blank=True,)
     
-    class Meta:
-        verbose_name = _("person's address")
-        verbose_name_plural = _("person's address")
+#     class Meta:
+#         verbose_name = _("person's address")
+#         verbose_name_plural = _("person's address")
 
-    def __unicode__(self,):
-        return u"%s %s %s" % (self.address1, self.city_village, self.state_province,)
+#     def __unicode__(self,):
+#         return u"%s %s %s" % (self.address1, self.city_village, self.state_province,)
 
 
 class RelationType(ModelType):
