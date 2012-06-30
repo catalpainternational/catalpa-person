@@ -3,38 +3,37 @@ from datetime import datetime
 from django.contrib import admin
 from django.utils.translation import ugettext as _
 
-from saudedb.core.admin import Admin
 from person import models
 
 from lib.autocomplete_admin import FkAutocompleteAdmin, InlineAutocompleteAdmin
 
 
-class ContactAdmin(Admin, admin.TabularInline):
+class ContactAdmin(admin.TabularInline):
     model = models.Contact
     extra = 1
 
 
-class ContactTypeAdmin(Admin, admin.ModelAdmin):
+class ContactTypeAdmin(admin.ModelAdmin):
     model = models.ContactType
 
 
-class IdentifierAdmin(Admin, admin.TabularInline):
+class IdentifierAdmin(admin.TabularInline):
     model = models.Identifier
     extra = 1
 
 
-class IdentifierTypeAdmin(Admin, admin.ModelAdmin):
+class IdentifierTypeAdmin(admin.ModelAdmin):
     model = models.IdentifierType
 
 
-class RelationAdmin(Admin, InlineAutocompleteAdmin):
+class RelationAdmin(InlineAutocompleteAdmin):
     model = models.Relation
     fk_name = 'person'
     related_search_fields = {'relation': ('name__given_name','name__family_name','name__family_name2'),}
     extra = 1
 
 
-class RelationTypeAdmin(Admin, admin.ModelAdmin):
+class RelationTypeAdmin(admin.ModelAdmin):
     model = models.RelationType
 
     def save_model(self, request, obj, form, change):
@@ -42,7 +41,7 @@ class RelationTypeAdmin(Admin, admin.ModelAdmin):
         inverse_relation_id = request.POST.get('inverse_relation')
 
         try: 
-            import pdb; pdb.set_trace()       
+            #import pdb; pdb.set_trace()       
             inverse_relation = self.model.objects.get(id=inverse_relation_id)
             inverse_relation.inverse_relation = obj
             inverse_relation.save()
