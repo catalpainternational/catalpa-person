@@ -5,7 +5,7 @@ from django.utils.translation import ugettext as _
 
 from person import models
 
-from lib.autocomplete_admin import FkAutocompleteAdmin, InlineAutocompleteAdmin
+from autocomplete_admin import FkAutocompleteAdmin, InlineAutocompleteAdmin
 
 
 class ContactAdmin(admin.TabularInline):
@@ -49,17 +49,17 @@ class RelationTypeAdmin(admin.ModelAdmin):
             pass
             
 
-class PersonNameAdmin(Admin, admin.TabularInline):
+class PersonNameAdmin(admin.TabularInline):
     model = models.PersonName
     fields = ['given_name', 'family_name',]
     max_num = 1
 
-class PersonAddressAdmin(Admin, admin.TabularInline):
-    model = models.PersonAddress
-    max_num = 1
+#class PersonAddressAdmin(admin.TabularInline):
+#    model = models.PersonAddress
+#    max_num = 1
 
 
-class PersonAdmin(Admin, FkAutocompleteAdmin):
+class PersonAdmin(FkAutocompleteAdmin):
     model = models.Person
     fields = ['gender', 'birthdate', 'birthdate_estimated','deathdate',]
     search_fields = ['personname__given_name','personname__family_name',]
